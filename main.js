@@ -7,12 +7,15 @@ const setText = (id, value) => {
   }
 };
 
-const setLink = (id, value) => {
+const setContactLink = (id, value) => {
   const element = document.getElementById(id);
-  if (element) {
-    element.href = value.startsWith("mailto:") ? value : value;
-    element.textContent = value.replace("mailto:", "");
+  if (!element) {
+    return;
   }
+
+  const isEmail = value.includes("@") && !value.includes(" ");
+  element.textContent = value.replace("mailto:", "");
+  element.href = isEmail ? `mailto:${value.replace("mailto:", "")}` : "#contact";
 };
 
 const createNode = (tag, className, content) => {
@@ -39,8 +42,11 @@ setText("contactCopy", profile.contactCopy);
 const orbitTargets = ["orbitA", "orbitB", "orbitC"];
 profile.orbitStats.forEach((item, index) => {
   const slot = document.getElementById(orbitTargets[index]);
-  if (!slot) return;
+  if (!slot) {
+    return;
+  }
   slot.innerHTML = `<strong>${item.value}</strong><span>${item.label}</span>`;
+  slot.setAttribute("data-animate", "");
 });
 
 const signals = document.getElementById("heroSignals");
@@ -60,12 +66,37 @@ profile.metrics.forEach((metric) => {
   metricsGrid.appendChild(card);
 });
 
+const expertiseGrid = document.getElementById("expertiseGrid");
+profile.expertise.forEach((item) => {
+  const card = createNode("article", "expertise-card");
+  card.innerHTML = `
+    <span class="expertise-tag">${item.tag}</span>
+    <h3>${item.title}</h3>
+    <p>${item.summary}</p>
+  `;
+  expertiseGrid.appendChild(card);
+});
+
+const offersGrid = document.getElementById("offersGrid");
+profile.offers.forEach((item, index) => {
+  const card = createNode("article", "offer-card");
+  card.innerHTML = `
+    <div class="card-topline">
+      <span class="card-index">Offer ${String(index + 1).padStart(2, "0")}</span>
+      <span class="card-impact">${item.outcome}</span>
+    </div>
+    <h3>${item.name}</h3>
+    <p>${item.summary}</p>
+  `;
+  offersGrid.appendChild(card);
+});
+
 const achievementsGrid = document.getElementById("achievementsGrid");
 profile.achievements.forEach((item, index) => {
   const card = createNode("article", "achievement-card");
   card.innerHTML = `
     <div class="card-topline">
-      <span class="card-index">Achievement ${String(index + 1).padStart(2, "0")}</span>
+      <span class="card-index">Proof ${String(index + 1).padStart(2, "0")}</span>
       <span class="card-impact">${item.impact}</span>
     </div>
     <h3>${item.title}</h3>
@@ -96,7 +127,7 @@ profile.timeline.forEach((item) => {
   timeline.appendChild(card);
 });
 
-setLink("contactEmail", `mailto:${profile.email}`);
+setContactLink("contactEmail", profile.email);
 
 const linkedIn = document.getElementById("contactLinkedIn");
 linkedIn.href = profile.linkedIn;

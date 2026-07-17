@@ -1,16 +1,16 @@
 :root {
-  --bg: #08111f;
-  --bg-soft: #10233f;
-  --surface: rgba(10, 24, 43, 0.82);
-  --surface-strong: rgba(16, 35, 63, 0.95);
-  --surface-light: rgba(255, 255, 255, 0.08);
-  --line: rgba(162, 194, 255, 0.18);
-  --text: #eff5ff;
-  --muted: #a6b7d4;
-  --accent: #6ef2c7;
-  --accent-strong: #ff9f5a;
-  --accent-warm: #ffd76e;
-  --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  --bg: #0d0a07;
+  --bg-soft: #18110d;
+  --surface: rgba(26, 18, 13, 0.82);
+  --surface-strong: rgba(37, 26, 18, 0.92);
+  --surface-light: rgba(255, 255, 255, 0.07);
+  --line: rgba(239, 197, 143, 0.16);
+  --text: #f8f1e8;
+  --muted: #c9b7a1;
+  --accent: #dba65c;
+  --accent-strong: #78d0c0;
+  --accent-warm: #f4d7a4;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
   --radius: 28px;
 }
 
@@ -28,9 +28,9 @@ body {
   font-family: "Manrope", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at 15% 20%, rgba(110, 242, 199, 0.18), transparent 24%),
-    radial-gradient(circle at 80% 15%, rgba(255, 159, 90, 0.18), transparent 20%),
-    linear-gradient(180deg, #06101d 0%, #0b1728 42%, #08111f 100%);
+    radial-gradient(circle at 18% 18%, rgba(219, 166, 92, 0.16), transparent 26%),
+    radial-gradient(circle at 84% 14%, rgba(120, 208, 192, 0.14), transparent 22%),
+    linear-gradient(180deg, #090603 0%, #120b06 40%, #0d0a07 100%);
 }
 
 body::before {
@@ -39,8 +39,8 @@ body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 92%);
 }
@@ -51,13 +51,15 @@ a {
 }
 
 .page-shell {
-  width: min(1200px, calc(100% - 32px));
+  width: min(1220px, calc(100% - 32px));
   margin: 0 auto;
   padding: 24px 0 64px;
 }
 
 .hero,
 .stats-section,
+.expertise-section,
+.offers-section,
 .achievement-section,
 .leadership-section,
 .journey-section,
@@ -71,20 +73,21 @@ a {
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-  padding: 14px 20px;
-  background: rgba(5, 13, 24, 0.55);
+  padding: 16px 22px;
+  background: rgba(12, 8, 5, 0.62);
   border: 1px solid var(--line);
   border-radius: 999px;
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
 }
 
 .brand-lockup {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .brand-dot {
@@ -92,7 +95,7 @@ a {
   height: 12px;
   border-radius: 999px;
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-  box-shadow: 0 0 24px rgba(110, 242, 199, 0.8);
+  box-shadow: 0 0 22px rgba(219, 166, 92, 0.68);
 }
 
 .nav-links {
@@ -105,7 +108,7 @@ a {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.9fr;
+  grid-template-columns: 1.18fr 0.82fr;
   gap: 28px;
   margin-top: 28px;
 }
@@ -113,6 +116,8 @@ a {
 .hero-copy,
 .hero-panel,
 .stats-grid article,
+.expertise-card,
+.offer-card,
 .achievement-card,
 .principle-card,
 .timeline-card,
@@ -125,7 +130,10 @@ a {
 
 .hero-copy {
   border-radius: calc(var(--radius) + 8px);
-  padding: 48px;
+  padding: 54px 48px 46px;
+  background:
+    radial-gradient(circle at top left, rgba(219, 166, 92, 0.11), transparent 34%),
+    var(--surface);
 }
 
 .hero-panel {
@@ -137,8 +145,8 @@ a {
   margin: 0 0 12px;
   color: var(--accent);
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  font-size: 0.74rem;
   font-weight: 800;
 }
 
@@ -146,24 +154,24 @@ h1,
 h2,
 h3 {
   margin: 0;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Syne", sans-serif;
 }
 
 h1 {
-  font-size: clamp(2.8rem, 7vw, 5.8rem);
-  line-height: 0.94;
-  max-width: 11ch;
+  font-size: clamp(2.9rem, 7vw, 6rem);
+  line-height: 0.95;
+  max-width: 10.5ch;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3.1rem);
+  font-size: clamp(2rem, 4vw, 3.2rem);
   line-height: 1;
-  max-width: 12ch;
+  max-width: 13ch;
 }
 
 .hero-summary,
 .contact-copy {
-  max-width: 60ch;
+  max-width: 62ch;
   margin-top: 20px;
   font-size: 1.08rem;
   line-height: 1.8;
@@ -181,7 +189,7 @@ h2 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 50px;
+  min-height: 52px;
   padding: 0 22px;
   border-radius: 999px;
   font-weight: 800;
@@ -195,8 +203,8 @@ h2 {
 }
 
 .button-primary {
-  color: #041019;
-  background: linear-gradient(135deg, var(--accent), #d8ffe9);
+  color: #130b05;
+  background: linear-gradient(135deg, var(--accent), #f6dbb5);
 }
 
 .button-secondary {
@@ -212,13 +220,14 @@ h2 {
   margin-top: 30px;
 }
 
-.signal-pill {
+.signal-pill,
+.expertise-tag {
   padding: 10px 14px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--line);
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
 }
 
 .panel-heading {
@@ -242,8 +251,8 @@ h2 {
   margin-top: 22px;
   border-radius: 22px;
   background:
-    radial-gradient(circle at center, rgba(110, 242, 199, 0.12), transparent 34%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+    radial-gradient(circle at center, rgba(120, 208, 192, 0.1), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
   overflow: hidden;
 }
 
@@ -258,8 +267,8 @@ h2 {
 .orbit-core {
   inset: 50% auto auto 50%;
   transform: translate(-50%, -50%);
-  width: 186px;
-  height: 186px;
+  width: 188px;
+  height: 188px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -277,38 +286,40 @@ h2 {
 }
 
 .orbit-core strong {
-  font-size: 1.6rem;
-  line-height: 1.1;
+  font-size: 1.55rem;
+  line-height: 1.12;
 }
 
 .orbit-ring {
   position: absolute;
   inset: 50% auto auto 50%;
   transform: translate(-50%, -50%);
-  border: 1px dashed rgba(166, 183, 212, 0.2);
+  border: 1px dashed rgba(244, 215, 164, 0.18);
   border-radius: 50%;
 }
 
 .orbit-ring-one {
-  width: 260px;
-  height: 260px;
+  width: 264px;
+  height: 264px;
 }
 
 .orbit-ring-two {
-  width: 360px;
-  height: 360px;
+  width: 366px;
+  height: 366px;
 }
 
 .orbit-card {
-  width: 150px;
+  width: 154px;
   padding: 16px;
   border-radius: 18px;
 }
 
-.orbit-card strong {
+.orbit-card strong,
+.stats-grid strong {
   display: block;
-  font-size: 1.6rem;
-  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-family: "Syne", sans-serif;
+  color: var(--accent-warm);
 }
 
 .orbit-card span {
@@ -319,21 +330,23 @@ h2 {
 }
 
 .orbit-card-a {
-  top: 46px;
-  right: 24px;
+  top: 44px;
+  right: 20px;
 }
 
 .orbit-card-b {
-  bottom: 68px;
+  bottom: 70px;
   left: 18px;
 }
 
 .orbit-card-c {
   bottom: 30px;
-  right: 72px;
+  right: 68px;
 }
 
 .stats-section,
+.expertise-section,
+.offers-section,
 .achievement-section,
 .leadership-section,
 .journey-section,
@@ -350,13 +363,34 @@ h2 {
   margin-top: 6px;
 }
 
-.stats-grid {
+.stats-grid,
+.expertise-grid,
+.offers-grid,
+.achievement-grid,
+.leadership-principles,
+.timeline {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
 }
 
+.stats-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.expertise-grid,
+.offers-grid,
+.achievement-grid,
+.leadership-principles {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.timeline {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .stats-grid article,
+.expertise-card,
+.offer-card,
 .achievement-card,
 .principle-card,
 .timeline-card,
@@ -365,14 +399,9 @@ h2 {
   padding: 24px;
 }
 
-.stats-grid strong {
-  display: block;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-family: "Space Grotesk", sans-serif;
-  color: var(--accent-warm);
-}
-
 .stats-grid span,
+.expertise-card p,
+.offer-card p,
 .achievement-card p,
 .principle-card p,
 .timeline-card p {
@@ -387,16 +416,20 @@ h2 {
   font-weight: 700;
 }
 
-.achievement-grid,
-.leadership-principles {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+.expertise-card,
+.offer-card,
+.achievement-card {
+  min-height: 232px;
+  overflow: hidden;
 }
 
-.achievement-card {
-  min-height: 240px;
-  overflow: hidden;
+.expertise-card h3,
+.offer-card h3,
+.achievement-card h3,
+.principle-card h3,
+.timeline-card h3 {
+  margin-top: 18px;
+  font-size: 1.45rem;
 }
 
 .card-topline {
@@ -415,16 +448,9 @@ h2 {
 }
 
 .card-impact {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 1.8rem;
+  font-family: "Syne", sans-serif;
+  font-size: 1.25rem;
   color: var(--accent-warm);
-}
-
-.achievement-card h3,
-.principle-card h3,
-.timeline-card h3 {
-  margin-top: 18px;
-  font-size: 1.45rem;
 }
 
 .leadership-layout {
@@ -461,7 +487,7 @@ h2 {
 .radar-circle {
   inset: 50% auto auto 50%;
   transform: translate(-50%, -50%);
-  border: 1px solid rgba(166, 183, 212, 0.18);
+  border: 1px solid rgba(244, 215, 164, 0.14);
   border-radius: 50%;
 }
 
@@ -483,20 +509,20 @@ h2 {
 .radar-axis-x {
   inset: 50% 0 auto 0;
   height: 1px;
-  background: rgba(166, 183, 212, 0.18);
+  background: rgba(244, 215, 164, 0.14);
 }
 
 .radar-axis-y {
   inset: 0 auto 0 50%;
   width: 1px;
-  background: rgba(166, 183, 212, 0.18);
+  background: rgba(244, 215, 164, 0.14);
 }
 
 .radar-shape {
   clip-path: polygon(50% 10%, 88% 48%, 54% 86%, 14% 54%);
   inset: 12%;
-  background: linear-gradient(180deg, rgba(110, 242, 199, 0.55), rgba(110, 242, 199, 0.08));
-  border: 1px solid rgba(110, 242, 199, 0.7);
+  background: linear-gradient(180deg, rgba(120, 208, 192, 0.45), rgba(120, 208, 192, 0.06));
+  border: 1px solid rgba(120, 208, 192, 0.62);
 }
 
 .radar-point {
@@ -504,7 +530,7 @@ h2 {
   height: 14px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 0 8px rgba(110, 242, 199, 0.1);
+  box-shadow: 0 0 0 8px rgba(219, 166, 92, 0.1);
 }
 
 .point-one {
@@ -569,12 +595,6 @@ h2 {
   font-weight: 800;
 }
 
-.timeline {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
 .timeline-card {
   position: relative;
   min-height: 230px;
@@ -600,9 +620,9 @@ blockquote {
   border-radius: 28px;
   border: 1px solid var(--line);
   background:
-    linear-gradient(135deg, rgba(255, 159, 90, 0.12), transparent 35%),
+    linear-gradient(135deg, rgba(219, 166, 92, 0.12), transparent 35%),
     rgba(255, 255, 255, 0.04);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Syne", sans-serif;
   font-size: clamp(1.6rem, 3vw, 2.6rem);
   line-height: 1.25;
 }
@@ -631,8 +651,8 @@ blockquote {
 }
 
 .contact-link {
-  font-size: clamp(1.8rem, 4vw, 2.7rem);
-  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+  font-family: "Syne", sans-serif;
 }
 
 .contact-secondary {
@@ -664,19 +684,21 @@ blockquote {
     grid-template-columns: 1fr;
   }
 
+  .expertise-grid,
+  .offers-grid,
   .achievement-grid,
   .leadership-principles {
     grid-template-columns: 1fr;
   }
 
   .hero-copy {
-    padding: 32px;
+    padding: 34px;
   }
 }
 
 @media (max-width: 720px) {
   .page-shell {
-    width: min(100% - 20px, 1200px);
+    width: min(100% - 20px, 1220px);
     padding-top: 12px;
   }
 
@@ -690,6 +712,8 @@ blockquote {
   .hero-copy,
   .hero-panel,
   .stats-grid article,
+  .expertise-card,
+  .offer-card,
   .achievement-card,
   .principle-card,
   .timeline-card,
